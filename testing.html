@@ -5,8 +5,8 @@
 	<body>
 
 <div id="sectorwindow" style="left: 683px; top: 38.4px; display: block;">
-	<img width="250" height="158" src="https://www.spc.noaa.gov/exper/hrrr/sectors/sector16.gif" border="2" usemap="#sectors" id="sectormap">
-	<a href="#" onclick="showSector(19);selectSector(19);"><center>Full CONUS Sector</center></a>
+	<img width="250" height="158" src="https://www.spc.noaa.gov/exper/hrrr/sectors/sectors_small.gif" border="2" usemap="#sectors" id="sectormap">
+	<a href="#" onmouseover="showSector('s_small');selectSector(19);"><center>Full CONUS Sector</center></a>
 	<map name="sectors">
 		<area id="s11" shape="rect" coords="0,0,103,73" onmouseover="showSector(11)" onclick="selectSector(11)">
 		<area id="s12" shape="rect" coords="0,45,106,122" onmouseover="showSector(12)" onclick="selectSector(12)">
@@ -28,7 +28,7 @@
 <button onclick="setImage(19);">setImg</button>
 <button onclick="checkInfo();">checkInfo</button>
 
-	<script src='./script.js'></script>
+	<script src='./rewriting_script.js'></script>
 	</body>
 </html>
 

@@ -48,7 +48,14 @@ function setImage(sectorNum, run, frame, ) {
 }
 
 function selectRun(runNum) {
+	
 }
+
+//list of things that are needed for the img url:
+//sector
+//the starting time of the selected run
+//the selected frame; default is 001
+//the 'version', 
 
 //use this function to keep most of the main script bc await needs to be used to wait for fetch() requests to finish
 async function mainProgram() {
@@ -56,6 +63,7 @@ async function mainProgram() {
 	console.log(matrixInfo);
 	date = getDate(matrixInfo); //gets the date from that run's id
 	fifthRun = getFifthOldestRun(matrixInfo);
+	selectedRun = selectRun(fifthRun, selectedFrame);
 
 	setImage(19, fifthRun, 002, 
 
