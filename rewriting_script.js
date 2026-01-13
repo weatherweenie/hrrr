@@ -33,7 +33,7 @@ async function getMostRecentRun(){
 
 	//add 5 hrs to that then return mostRecentRun, using the Date object to work with milliseconds since Unix Epoch
 	fifthOldestRunMs = runToUnixMs(fifthOldestRun);
-	mostRecentRunMs = fifthOldestRunMs + 432000000; 
+	mostRecentRunMs = 5 * 3600000 + fifthOldestRunMs; //3600000ms/hr
 	mostRecentRun = unixMsToRun(mostRecentRunMs);
 
 	console.log("return mostRecentRun:", mostRecentRun);
@@ -41,6 +41,7 @@ async function getMostRecentRun(){
 }
 
 function unixMsToRun(unixMs) {
+	console.log("unixMsToRun(", unixMs, ")");
 
 	//put the ms since unix epoch into date constructor
 	dateObject = new Date(unixMs); 
@@ -113,6 +114,7 @@ function showCurrentSector() {
 
 function selectSector(num) { 
 	sector = num; 
+	updateMainImg();
 }
 
 function calculateFrame(run, fullFrame) {
@@ -121,7 +123,7 @@ function calculateFrame(run, fullFrame) {
 	fullFrameMs = runToUnixMs(fullFrame);
 	runMs = runToUnixMs(run);
 	frameMs = fullFrameMs - runMs;
-	//divide that by the 3600000ms in a day
+	//divide that by the 3600000ms in a hour
 	frame = frameMs / 3600000; 
 
 	//it has to be a str with 3 digits, add leading zeros
@@ -131,7 +133,7 @@ function calculateFrame(run, fullFrame) {
 	return frame;
 }
 
-function updateMainImage() {
+function updateMainImg() {
 	console.log("todo: update the img");
 	run = Number(run);
 	fullFrame = Number(fullFrame);
@@ -167,12 +169,11 @@ function buildUrl(sector, run, frame, fullFrame, product) {
 	return url;
 }
 
-async function setDefaults() {
-	console.log("function setDefaults()");
-	sector = 19; //conus
 
 
-}
+
+
+
 
 
 
@@ -180,18 +181,65 @@ async function main_program() {
 
 	//defaults:
 	sector = 19; //conus
+	run = await getMostRecentRun();
 	//set the default frame hr to the 1st frame of newest run
-	mostRecentRun = await getMostRecentRun();
-	run = mostRecentRun;
+	fullFrame = unixMsToRun(runToUnixMs(run) + 3600000); //3600000ms/hr
+	frame = calculateFrame(run, fullFrame);
+	product = 'refc';
 
-	sector = 'refc';
-
-	console.log("fullFrameNum", fullFrameNum);
+	updateMainImg();
 
 }
 
 
 main_program();
+
+
+
+
+
+
+
+
+
+
+
+
+//then listen for keypresses left/right arrows to scroll through frames
+//or up/down to go through older/newer runs
+
+document.addEventListener('keydown', (event) => {
+	//check if the key pressed was left or right
+	//then add or subtract 3600000ms (1hr) to fullFrame,
+	//calculate the frame, and update img
+	if (event.key === 'ArrowRight') {
+		console.log('ArrowRight');
+		fullFrame = unixMsToRun( runToUnixMs(fullFrame) + 3600000 )
+		frame = calculateFrame(run, fullFrame);
+	}
+	else if (event.key === 'ArrowLeft') {
+		console.log('ArrowLeft');
+		fullFrame = unixMsToRun( runToUnixMs(fullFrame) - 3600000 )
+		frame = calculateFrame(run, fullFrame);
+	}
+
+
+	updateMainImg();
+});//end of EventListener
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
