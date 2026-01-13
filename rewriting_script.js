@@ -14,12 +14,12 @@
 //and the types of info you want to see, like reflectivity, cape, stp, etc.
 
 //default values to start with:
-sector = 19; //conus
 
 //WE ARE USING ZULU TIME
 
 
 async function getMostRecentRun(){
+	console.log("getMostRecentRun()");
 //first, we can get the fifth oldest run from a url, this is the first thing i found
 ///hrrr/status/status.txt might also be useful
 //calculate the most recent run with that +5 hrs
@@ -31,45 +31,58 @@ async function getMostRecentRun(){
 	fifthOldestRun = Number(fifthOldestRun);
 	console.log("fifthOldestRun (from matrixinfo.txt)", fifthOldestRun);
 
-	//add 5 hrs to that, then get a Date object from that
-	//the Date() constructor accounts for the hours overflowing 23
-	temp_mostRecentRun = fifthOldestRun + 5;
-	temp_mostRecentRun = temp_mostRecentRun.toString();
+	//add 5 hrs to that then return mostRecentRun;
+	mostRecentRun = addHours(fifthOldestRun, 5);
 
-	year = temp_mostRecentRun.slice(0, 4);
-	month = temp_mostRecentRun.slice(4, 6);
-	day = temp_mostRecentRun.slice(6, 8);
-	hour = temp_mostRecentRun.slice(8, 10); 
+	console.log("return mostRecentRun:", mostRecentRun);
+	return mostRecentRun;
+}
 
-	mostRecentRunDateObject = new Date(year, month, day, hour);
+function addHours (runNum, hoursToAdd) {
+	console.log(runNum, ",", hoursToAdd);
+	//make sure both are a number
+	runNum = Number(runNum);
+	hoursToAdd = Number(hoursToAdd);
 
-	//build the most recent run's value from that
-	newYear = mostRecentRunDateObject.getFullYear();
-	newMonth = mostRecentRunDateObject.getMonth();
-	newDay = mostRecentRunDateObject.getDate();
-	newHour = mostRecentRunDateObject.getHours();
+	//add 5 then use the Date() constructor which will account for overflowing hours over 23
+	temp_runNum = runNum + hoursToAdd;
+	temp_runNum = temp_runNum.toString();
 
-	newYear = newYear.toString();
-	newMonth = newMonth.toString();
-	newDay = newDay.toString();
-	newHour = newHour.toString();
+	year = temp_runNum.slice(0, 4);
+        month = temp_runNum.slice(4, 6);
+        day = temp_runNum.slice(6, 8);
+        hour = temp_runNum.slice(8, 10);
 
-	function convertNum(num) {
-		if (num < 10) { str = '0' + num.toString() }
-		else { str = num.toString() }
+	dateObject = new Date(year, month, day, hour);
 
-		return str
-	}
+	//build the run number from that
+	newYear = dateObject.getFullYear();
+        newMonth = dateObject.getMonth();
+        newDay = dateObject.getDate();
+        newHour = dateObject.getHours();
 
-	newYear = newYear.toString();
-	newMonth = convertNum(newMonth);
-	newDay = convertNum(newDay);
+        newYear = newYear.toString();
+        newMonth = newMonth.toString();
+        newDay = newDay.toString();
+        newHour = newHour.toString();
+
+        function convertNum(num) {
+                if (num < 10) { str = '0' + num.toString() }
+                else { str = num.toString() }
+
+                return str
+        }
+
+        newYear = newYear.toString();
+        newMonth = convertNum(newMonth);
+        newDay = convertNum(newDay);
 	newHour = convertNum(newHour);
 
-	mostRecentRun = newYear + newMonth + newDay + newHour;
-	console.log("mostRecentRun", mostRecentRun);
+	newRun = newYear + newMonth + newDay + newHour;
+	console.log("returned newRun:", newRun);
+	return newRun;
 
-	return mostRecentRun;
+	
 
 
 }
@@ -100,15 +113,43 @@ function selectFrame(num) {
 
 }
 
-function updateImg() {
+function updateImg(sector, run, fullFrame) {
 	console.log("todo: update the img");
+
+	//info needed for the url:
+	//sector
+	//the run
+	//the frame (calculated from fullFrame
+	//the full frame's number
+	
+	run = Number(run);
+	fullFrame = Number(fullFrame);
+	frame = subtractDate(fullFrame, run);
+
 }
 
-mostRecentRun = getMostRecentRun();
+async function setDefaults() {
+	console.log("function setDefaults()");
+	sector = 19; //conus
+
+	//set the default frame hr to the 1st frame of newest run
+	mostRecentRun = await getMostRecentRun();
+	fullFrameNum = await addHours(mostRecentRun, 1);
+	
+}
 
 
 
 
+async function main_program() {
+
+	await setDefaults();
+	console.log("fullFrameNum", fullFrameNum);
+
+}
+
+
+main_program();
 
 
 
