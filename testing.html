@@ -5,32 +5,70 @@
 	</head>
 	<body>
 
+		<h3>HRRR Browser</h3>
 
-<h3>HRRR Browser</h3>
+		<div class='flexbox'>
 
-<img id='mainImg' src='https://www.spc.noaa.gov/exper/mesoanalysis/s19/otlk/otlk.gif' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+			<div id="leftside">
 
-<div id="sectorwindow" style="left: 683px; top: 38.4px; display: block;">
-	<img width="250" height="158" src="https://www.spc.noaa.gov/exper/hrrr/sectors/sectors_small.gif" border="2" usemap="#sectors" id="sectormap">
-	<a href="#" onmouseover="showSector(19);" onmouseleave="showCurrentSector();" onclick="selectSector(19);"><center>Full CONUS Sector</center></a>
-	<map name="sectors">
-		<area id="s11" shape="rect" coords="0,0,103,73" onmouseover="showSector(11)" onmouseleave="showCurrentSector();" onclick="selectSector(11);">
-		<area id="s12" shape="rect" coords="0,45,106,122" onmouseover="showSector(12)" onmouseleave="showCurrentSector();" onclick="selectSector(12);">
-		<area id="s13" shape="rect" coords="75,14,169,79" onmouseover="showSector(13)" onmouseleave="showCurrentSector();" onclick="selectSector(13);">
-		<area id="s14" shape="rect" coords="75,49,166,112" onmouseover="showSector(14)" onmouseleave="showCurrentSector();" onclick="selectSector(14);">
-		<area id="s15" shape="rect" coords="71,76,177,154" onmouseover="showSector(15)" onmouseleave="showCurrentSector();" onclick="selectSector(15);">
-		<area id="s20" shape="rect" coords="107,46,195,111" onmouseover="showSector(20)" onmouseleave="showCurrentSector();" onclick="selectSector(20);">
-		<area id="s16" shape="rect" coords="139,3,244,80" onmouseover="showSector(16)" onmouseleave="showCurrentSector();" onclick="selectSector(16);">
-		<area id="s17" shape="rect" coords="135,49,224,114" onmouseover="showSector(17)" onmouseleave="showCurrentSector();" onclick="selectSector(17);">
-		<area id="s18" shape="rect" coords="125,90,218,156" onmouseover="showSector(18)" onmouseleave="showCurrentSector();" onclick="selectSector(18);">
-	</map>
-</div>
+				<div id='regionselect'>Select a Region:</div>
+				
+				<div id="sectorwindow" style="left: 683px; top: 38.4px; display: block;">
+					<img width="250" height="158" src="https://www.spc.noaa.gov/exper/hrrr/sectors/sectors_small.gif" border="2" usemap="#sectors" id="sectormap">
+					<a href="#" onmouseover="showSector(19);" onmouseleave="showCurrentSector();" onclick="selectSector(19);"><center>Full CONUS Sector</center></a>
+					<map name="sectors">
+						<area id="s11" shape="rect" coords="0,0,103,73" onmouseover="showSector(11)" onmouseleave="showCurrentSector();" onclick="selectSector(11);">
+						<area id="s12" shape="rect" coords="0,45,106,122" onmouseover="showSector(12)" onmouseleave="showCurrentSector();" onclick="selectSector(12);">
+						<area id="s13" shape="rect" coords="75,14,169,79" onmouseover="showSector(13)" onmouseleave="showCurrentSector();" onclick="selectSector(13);">
+						<area id="s14" shape="rect" coords="75,49,166,112" onmouseover="showSector(14)" onmouseleave="showCurrentSector();" onclick="selectSector(14);">
+						<area id="s15" shape="rect" coords="71,76,177,154" onmouseover="showSector(15)" onmouseleave="showCurrentSector();" onclick="selectSector(15);">
+						<area id="s20" shape="rect" coords="107,46,195,111" onmouseover="showSector(20)" onmouseleave="showCurrentSector();" onclick="selectSector(20);">
+						<area id="s16" shape="rect" coords="139,3,244,80" onmouseover="showSector(16)" onmouseleave="showCurrentSector();" onclick="selectSector(16);">
+						<area id="s17" shape="rect" coords="135,49,224,114" onmouseover="showSector(17)" onmouseleave="showCurrentSector();" onclick="selectSector(17);">
+						<area id="s18" shape="rect" coords="125,90,218,156" onmouseover="showSector(18)" onmouseleave="showCurrentSector();" onclick="selectSector(18);">
+					</map>
+				</div>
 
-<br>
-<br>
+				<h4>Product Overlays</h4>
+				<div><label>Day1 Outlook </label><input type="checkbox"/></div>
+				<div><label>Day1 Fire</label><input type="checkbox"/></div>
+				<div><label>Watches and Warnings</label><input type="checkbox"/></div>
+				<h4>Map Overlays</h4>
+				<div><label>Counties</label><input type="checkbox"/></div>
+				<div><label>County Warnings Areas</label><input type="checkbox"/></div>
+				<div><label>Highways and Cities</label><input type="checkbox"/></div>
+				<div><label>ARTCC Regions</label><input type="checkbox"/></div>
+				<h4>Image Underlays</h4>
+				<div><label>Topography</label><input type="checkbox"/></div>
+				<div><label>Population</label><input type="checkbox"/></div>
+				<div><label>Latest Radar</label><input type="checkbox"/></div>
+				<div><label>Latest Surface Observations</label><input type="checkbox"/></div>
 
+			</div>
 
-<button onclick="updateMainImg();">setImg</button>
+			<div id="center">
+				<img id='mainImg' src='https://www.spc.noaa.gov/exper/hrrr/missing.png' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+				<label for="timezone">Time Zone: </label>
+				<select id="timezone" name="timezone">
+					<option value="Zulu/UTC"></option>
+				</select>
+			</div>
+
+			<div id="rightside">
+				<h4>Parameter Selection</h4>
+				<div><label>Composite Reflectivity</label><input type="checkbox"/></div>
+				<div><label>MSL Pressure and Wind</label><input type="checkbox"/></div>
+				<div><label>Shear Parameters</label><input type="checkbox"/></div>
+				<div><label>Thermo Parameters</label><input type="checkbox"/></div>
+				<div><label>Proxy Indicators</label><input type="checkbox"/></div>
+				<div><label>Max Surface Wind</label><input type="checkbox"/></div>
+				<div><label>SCP/STP</label><input type="checkbox"/></div>
+				<div><label>Updraft Helicity</label><input type="checkbox"/></div>
+				<div><label>Winter</label><input type="checkbox"/></div>
+				<div><label>Temp/Dew Point</label><input type="checkbox"/></div>
+			</div>
+
+		</div>
 
 	<script src='./rewriting_script.js'></script>
 	</body>
