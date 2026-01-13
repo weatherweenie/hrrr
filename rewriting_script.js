@@ -211,15 +211,28 @@ main_program();
 document.addEventListener('keydown', (event) => {
 	//check if the key pressed was left or right
 	//then add or subtract 3600000ms (1hr) to fullFrame,
-	//calculate the frame, and update img
+	//calculate the frame
+	//if up/down, add or subtract 3600000 (1hr) from the run
+	//calculate the frame again, so you're viewing the same time but on a different run
+	//then update the img
 	if (event.key === 'ArrowRight') {
 		console.log('ArrowRight');
-		fullFrame = unixMsToRun( runToUnixMs(fullFrame) + 3600000 )
+		fullFrame = unixMsToRun( runToUnixMs(fullFrame) + 3600000 );
 		frame = calculateFrame(run, fullFrame);
 	}
 	else if (event.key === 'ArrowLeft') {
 		console.log('ArrowLeft');
-		fullFrame = unixMsToRun( runToUnixMs(fullFrame) - 3600000 )
+		fullFrame = unixMsToRun( runToUnixMs(fullFrame) - 3600000 );
+		frame = calculateFrame(run, fullFrame);
+	}
+	else if (event.key === 'ArrowUp') {
+		console.log('ArrowUp');
+		run = unixMsToRun( runToUnixMs(run) - 3600000 );
+		frame = calculateFrame(run, fullFrame);
+	}
+	else if (event.key === 'ArrowDown') {
+		console.log('ArrowDown');
+		run = unixMsToRun( runToUnixMs(run) + 3600000 );
 		frame = calculateFrame(run, fullFrame);
 	}
 

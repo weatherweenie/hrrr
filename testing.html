@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel='stylesheet' href='./testing.css'>
 	</head>
 	<body>
+
+
+<h3>HRRR Browser</h3>
+
+<img id='mainImg' src='https://www.spc.noaa.gov/exper/mesoanalysis/s19/otlk/otlk.gif' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
 
 <div id="sectorwindow" style="left: 683px; top: 38.4px; display: block;">
 	<img width="250" height="158" src="https://www.spc.noaa.gov/exper/hrrr/sectors/sectors_small.gif" border="2" usemap="#sectors" id="sectormap">
@@ -23,7 +29,6 @@
 <br>
 <br>
 
-<img id='mainImg' src='https://www.spc.noaa.gov/exper/mesoanalysis/s19/otlk/otlk.gif' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
 
 <button onclick="updateMainImg();">setImg</button>
 
