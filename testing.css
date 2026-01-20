@@ -3,12 +3,16 @@ body, html {
 	height: 100%; /*ensure body takes full height of viewport*/
 }
 
-
 /*for my chromebook*/
-@media (max-width: 1370px) {
+@media screen and (min-width: 900px) and (max-width: 2000px) { /*max 1370px for chromebook*/
 
 	h3 {
 		text-align: center;
+	}
+
+	h4 {
+		margin: 0px;
+		margin-top: 15px;
 	}
 	
 	#mainImgWrapper {
@@ -49,16 +53,47 @@ body, html {
 
 }
 
-@media only screen and (max-width: 290px) {
 
-body {
-	margin: 1px;
+
+
+/*for the flip phone*/
+@media (max-width: 899px) { /*flip phone 290px*/
+
+	body {
+		margin: 1px;
+	}
+
+	#leftside {
+		display: none;
+	}
+
+	#rightside {
+		display: none;
+	}
+
+	.mainImg {
+		width: 225px;
+	}
+
+	h3 {
+		text-align: center;
+	}
+
 }
 
-#leftside {
-	display: none;
-}
 
-#rightside {
-	display: none;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

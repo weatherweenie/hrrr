@@ -133,22 +133,7 @@ function calculateFrame(run, fullFrame) {
 	return frame;
 }
 
-function updateMainImg() {
-	console.log("todo: update the img");
-	run = Number(run);
-	fullFrame = Number(fullFrame);
-
-	//info needed for the url:
-	//sector
-	//the run
-	//the frame - calculate that here
-	//the full frame's number
-	//the products to view - currently reflectivity by default
-	
-	frame = calculateFrame(run, fullFrame);
-
-	//check which underlay/overlays/products are selected, update each url, and change the display of it
-
+function updateProductImages() {
 	productCheckboxWrapper = document.getElementById("productCheckboxWrapper");
 
 	for (div of productCheckboxWrapper.children) {
@@ -170,6 +155,25 @@ function updateMainImg() {
 			productImg.src = '';
 		}
 	}
+}
+
+function updateMainImg() {
+	console.log("todo: update the img");
+	run = Number(run);
+	fullFrame = Number(fullFrame);
+
+	//info needed for the url:
+	//sector
+	//the run
+	//the frame - calculate that here
+	//the full frame's number
+	//the products to view - currently reflectivity by default
+	
+	frame = calculateFrame(run, fullFrame);
+
+	//check which underlay/overlays/products are selected, update each url, and change the display of it
+	updateProductImages();
+
 }
 
 function buildUrl(sector, run, frame, fullFrame, product) {
