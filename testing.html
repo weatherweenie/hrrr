@@ -47,7 +47,20 @@
 			</div>
 
 			<div id="center">
-				<img id='mainImg' src='https://www.spc.noaa.gov/exper/hrrr/missing.png' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+				<div id="mainImgWrapper">
+					<img class="mainImg" id="refcImg" style="display: block;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="pmslImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="srh3Img" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="capeImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="proxyImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="wmaxImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="scpImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="uhImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="ptypeImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+					<img class="mainImg" id="ttdImg" style="display: none;" src='' onerror="this.src='https://www.spc.noaa.gov/exper/hrrr/missing.png';"></img>
+
+
+				</div>
 				<label for="timezone">Time Zone: </label>
 				<select id="timezone" name="timezone">
 					<option value="Zulu/UTC"></option>
@@ -56,16 +69,18 @@
 
 			<div id="rightside">
 				<h4>Parameter Selection</h4>
-				<div><label>Composite Reflectivity</label><input type="checkbox"/></div>
-				<div><label>MSL Pressure and Wind</label><input type="checkbox"/></div>
-				<div><label>Shear Parameters</label><input type="checkbox"/></div>
-				<div><label>Thermo Parameters</label><input type="checkbox"/></div>
-				<div><label>Proxy Indicators</label><input type="checkbox"/></div>
-				<div><label>Max Surface Wind</label><input type="checkbox"/></div>
-				<div><label>SCP/STP</label><input type="checkbox"/></div>
-				<div><label>Updraft Helicity</label><input type="checkbox"/></div>
-				<div><label>Winter</label><input type="checkbox"/></div>
-				<div><label>Temp/Dew Point</label><input type="checkbox"/></div>
+				<div id="productCheckboxWrapper">
+					<div><label id="refc">Composite Reflectivity</label><input type="checkbox" onclick="updateMainImg();" checked/></div>
+					<div><label id="pmsl">MSL Pressure and Wind</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="srh3">Shear Parameters</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="cape">Thermo Parameters</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="proxy">Proxy Indicators</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="wmax">Max Surface Wind</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="scp">SCP/STP</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="uh">Updraft Helicity</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="ptype">Winter</label><input type="checkbox" onclick="updateMainImg();"/></div>
+					<div><label id="ttd">Temp/Dew Point</label><input type="checkbox" onclick="updateMainImg();"/></div>
+				</div>
 			</div>
 
 		</div>

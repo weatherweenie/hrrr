@@ -139,17 +139,37 @@ function updateMainImg() {
 	fullFrame = Number(fullFrame);
 
 	//info needed for the url:
-	//sector - already passed to function
-	//the run - already passed to function
+	//sector
+	//the run
 	//the frame - calculate that here
-	//the full frame's number - already passed to function
-	//the product to view - already passed to function - currently reflectivity by default
+	//the full frame's number
+	//the products to view - currently reflectivity by default
 	
 	frame = calculateFrame(run, fullFrame);
 
-	url = buildUrl(sector, run, frame, fullFrame, product);
+	//check which underlay/overlays/products are selected, update each url, and change the display of it
 
-	document.getElementById('mainImg').src = url;
+	productCheckboxWrapper = document.getElementById("productCheckboxWrapper");
+
+	for (div of productCheckboxWrapper.children) {
+		label = div.firstElementChild;
+		checkbox = div.lastElementChild;		
+		console.log(label.id);
+		product = label.id;
+		productImg = document.getElementById(product + "Img");
+		if (checkbox.checked) {
+			console.log(product, "checked");
+			url = buildUrl(sector, run, frame, fullFrame, product);
+			productImg.src = url;
+			productImg.display = "block";
+			productImg.style.display = "block";
+		}
+		else {
+			console.log(checkbox.id, "not checked");
+			productImg.style.display = "none";
+			productImg.src = '';
+		}
+	}
 }
 
 function buildUrl(sector, run, frame, fullFrame, product) {
@@ -185,12 +205,10 @@ async function main_program() {
 	//set the default frame hr to the 1st frame of newest run
 	fullFrame = unixMsToRun(runToUnixMs(run) + 3600000); //3600000ms/hr
 	frame = calculateFrame(run, fullFrame);
-	product = 'refc';
 
 	updateMainImg();
 
 }
-
 
 main_program();
 

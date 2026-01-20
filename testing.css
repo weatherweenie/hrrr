@@ -11,9 +11,15 @@ body, html {
 		text-align: center;
 	}
 	
-	#mainImg {
+	#mainImgWrapper {
 		width: 100%;
+		position: relative;
 
+	}
+
+	.mainImg {
+		position: absolute;
+		width: 100%;
 	}
 
 
@@ -41,4 +47,18 @@ body, html {
 		accent-color: rgb(255, 153, 153);
 	}
 
+}
+
+@media only screen and (max-width: 290px) {
+
+body {
+	margin: 1px;
+}
+
+#leftside {
+	display: none;
+}
+
+#rightside {
+	display: none;
 }
